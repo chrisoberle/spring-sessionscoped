@@ -1,5 +1,6 @@
 package com.baeldung.sessionscoped;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,18 @@ public class TodoController {
 
     @GetMapping("/index.html")
     public String showForm(Model model) {
-        model.addAttribute("todo", new TodoItem());
+        if (todos.size() > 0) {
+            model.addAttribute("todo", todos.get(todos.size() - 1));
+        } else {
+            model.addAttribute("todo", new TodoItem());
+        }
         model.addAttribute("allCategories", allCategories);
         return "index";
     }
 
     @PostMapping("/createTodo")
     public String create(@ModelAttribute TodoItem todo) {
+        todo.setCreateDate(LocalDateTime.now());
         todos.add(todo);
         return "redirect:/todos.html";
     }
