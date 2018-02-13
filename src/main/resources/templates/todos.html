@@ -18,26 +18,30 @@
     		</p>
     	</div>
         <div class="container">
+        	<br/>
         	<div class="row">
-        	<div class="col">
-            <h5>TODO List</h5>
-			<table>
-				<tbody>
-					<tr>
-						<th width="90%">Description</td>
-						<th width="10%" >Category</td>
-					</tr>
-					<tr th:each="todo : ${todos}">
-						<td th:text="${todo.description}">Description</td>
-						<td th:text="${todo.category.name}">Category</td>
-					</tr>
-				</tbody>
-			</table>
-			<p>
-				<a href="/index.html" class="btn btn-md btn-primary btn-block" role="button">Add New</a>
-			</p>
-			</div>
-			<div class="col"></div>
+        		<div class="col card" style="min-width: 30em;padding: 1em;">
+       				<div class="card-block">
+       					<h5 class="card-title">TODO List</h5>
+       			
+						<table>
+							<tbody>
+								<tr>
+									<th width="90%">Description</th>
+									<th width="10%" >Category</th>
+								</tr>
+								<tr th:each="todo : ${todos}">
+									<td th:text="${todo.description}">Description</td>
+									<td th:text="${todo.category.name}">Category</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col">
+					<a href="/form" class="btn btn-sm btn-primary btn-block float-right" role="button" 
+										style="width: 10em;">Add New</a>
+				</div>
 			</div>
         </div>
     </body>

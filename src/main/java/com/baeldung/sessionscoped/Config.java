@@ -18,17 +18,17 @@ public class Config implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers( ViewControllerRegistry registry ) {
-        registry.addViewController( "/" ).setViewName( "redirect:/index.html" );
+        registry.addViewController( "/" ).setViewName( "redirect:/form" );
         registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
     }
 
-    @Bean
-    @Scope(
-        value = WebApplicationContext.SCOPE_SESSION, 
-        proxyMode = ScopedProxyMode.TARGET_CLASS)
-    public TodoList todos() {
-        return new TodoList();
-    }
+//    @Bean
+//    @Scope(
+//        value = WebApplicationContext.SCOPE_SESSION, 
+//        proxyMode = ScopedProxyMode.TARGET_CLASS)
+//    public TodoList todos() {
+//        return new TodoList();
+//    }
 
     @Bean
     public List<Category> allCategories() {
