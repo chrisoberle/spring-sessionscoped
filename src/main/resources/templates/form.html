@@ -11,12 +11,12 @@
     <body>
     	<div class="container">
     		<p>
-    			<h3>Session Scope in Spring MVC - Example</h3>
+    			<h3 th:text="${title}">Title</h3>
     		</p>
     	</div>
         <div class="container">
             <h5>Enter a TODO</h5>
-                <form action="#" th:action="@{/create}" th:object="${todo}" method="post">
+                <form action="#" th:action="@{${createUrl}}" th:object="${todo}" method="post">
                 	<div class="input-group">
                 		<input type="text" th:field="*{description}" class="form-control" placeholder="TODO" required autofocus/>
                 		<select class="form-control" th:field="*{category}" style="max-width: 120px;">

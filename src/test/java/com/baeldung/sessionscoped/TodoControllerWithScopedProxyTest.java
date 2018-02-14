@@ -25,7 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Import(TestConfig.class)
-public class TodoControllerTest {
+public class TodoControllerWithScopedProxyTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -41,7 +41,7 @@ public class TodoControllerTest {
 
     @Test
     public void whenFirstRequest_thenContainsAllCategoriesAndUnintializedTodo() throws Exception {
-        MvcResult result = mockMvc.perform(get("/index.html"))
+        MvcResult result = mockMvc.perform(get("/scopedproxy/form"))
             .andExpect(status().isOk())
             .andExpect(model().attributeExists("todo", "allCategories"))
             .andReturn();
@@ -53,12 +53,12 @@ public class TodoControllerTest {
 
     @Test
     public void whenTodoExists_thenSubsequentFormRequestContainsesMostRecentTodo() throws Exception {
-        mockMvc.perform(post("/createTodo")
+        mockMvc.perform(post("/scopedproxy/form")
             .param("description", "newtodo").param("category", "BUSINESS"))
             .andExpect(status().is3xxRedirection())
             .andReturn();
 
-        MvcResult result = mockMvc.perform(get("/index.html"))
+        MvcResult result = mockMvc.perform(get("/scopedproxy/form"))
             .andExpect(status().isOk())
             .andExpect(model().attributeExists("todo", "allCategories"))
             .andReturn();

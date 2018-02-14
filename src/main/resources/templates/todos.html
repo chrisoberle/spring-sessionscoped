@@ -14,7 +14,7 @@
     <body>
     	<div class="container">
     		<p>
-    			<h3>Session Scope in Spring MVC - Example</h3>
+    			<h3 th:text="${title}">Title</h3>
     		</p>
     	</div>
         <div class="container">
@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<a href="/form" class="btn btn-sm btn-primary btn-block float-right" role="button" 
+					<a th:href="@{${formUrl}}" class="btn btn-sm btn-primary btn-block float-right" role="button" 
 										style="width: 10em;">Add New</a>
 				</div>
 			</div>

@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SessionscopedApplication {
+public class SessionScopeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SessionscopedApplication.class, args);
+		SpringApplication.run(SessionScopeApplication.class, args);
 	}
 }
