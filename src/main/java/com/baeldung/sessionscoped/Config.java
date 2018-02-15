@@ -29,9 +29,4 @@ public class Config implements WebMvcConfigurer {
     public TodoList todos() {
         return new TodoList();
     }
-
-    @Bean
-    public List<Category> allCategories() {
-        return Category.ALL_CATEGORIES;
-    }
 }

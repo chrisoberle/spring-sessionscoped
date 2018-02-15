@@ -1,7 +1,6 @@
 package com.baeldung.sessionscoped;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @SessionAttributes({"todos"})
 public class TodoControllerWithSessionAttributes extends AbstractTodoController {
 
-    private List<Category> allCategories;
-
-    public TodoControllerWithSessionAttributes(List<Category> allCategories) {
-        this.allCategories = allCategories;
+    public TodoControllerWithSessionAttributes() {
         this.setFormUrl("/sessionattributes/form");
         this.setListView("/sessionattributes/todos.html");
         this.setTitle("Session Attributes Example");
@@ -36,7 +32,6 @@ public class TodoControllerWithSessionAttributes extends AbstractTodoController 
         } else {
             model.addAttribute("todo", new TodoItem());
         }
-        model.addAttribute("allCategories", allCategories);
         model.addAttribute("formUrl", getFormUrl());
         model.addAttribute("title", getTitle());
         return "form";

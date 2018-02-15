@@ -20,19 +20,19 @@
         <div class="container">
         	<br/>
         	<div class="row">
-        		<div class="col card" style="min-width: 30em;padding: 1em;">
+        		<div class="col card" style="min-width: 45em;padding: 1em;">
        				<div class="card-block">
        					<h5 class="card-title">TODO List</h5>
        			
 						<table>
 							<tbody>
 								<tr>
-									<th width="90%">Description</th>
-									<th width="10%" >Category</th>
+									<th width="75%">Description</th>
+									<th width="25%" >Create Date</th>
 								</tr>
 								<tr th:each="todo : ${todos}">
 									<td th:text="${todo.description}">Description</td>
-									<td th:text="${todo.category.name}">Category</td>
+									<td th:text="${#temporals.format(todo.createDate, 'MM-dd-yyyy HH:mm:ss')}">Create Date</td>
 								</tr>
 							</tbody>
 						</table>

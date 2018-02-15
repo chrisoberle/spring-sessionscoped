@@ -44,29 +44,27 @@ public class TodoControllerWithSessionAttributesTest {
     public void whenFirstRequest_thenContainsAllCategoriesAndUnintializedTodo() throws Exception {
         MvcResult result = mockMvc.perform(get("/sessionattributes/form"))
             .andExpect(status().isOk())
-            .andExpect(model().attributeExists("todo", "allCategories"))
+            .andExpect(model().attributeExists("todo"))
             .andReturn();
 
         TodoItem item = (TodoItem) result.getModelAndView().getModel().get("todo");
         assertTrue(StringUtils.isEmpty(item.getDescription()));
-        assertTrue(StringUtils.isEmpty(item.getCategory()));
     }
 
     @Test
     public void whenTodoExists_thenSubsequentFormRequestContainsesMostRecentTodo() throws Exception {
         FlashMap flashMap = mockMvc.perform(post("/sessionattributes/form")
-            .param("description", "newtodo").param("category", "BUSINESS"))
+            .param("description", "newtodo"))
             .andExpect(status().is3xxRedirection())
             .andReturn().getFlashMap();
 
         MvcResult result = mockMvc.perform(get("/sessionattributes/form")
             .sessionAttrs(flashMap))
             .andExpect(status().isOk())
-            .andExpect(model().attributeExists("todo", "allCategories"))
+            .andExpect(model().attributeExists("todo"))
             .andReturn();
         TodoItem item = (TodoItem) result.getModelAndView().getModel().get("todo");
         assertEquals("newtodo", item.getDescription());
-        assertEquals(Category.BUSINESS, item.getCategory());
     }
 
 }

@@ -6,12 +6,10 @@ public class TodoItem {
 
     private String description;
     private LocalDateTime createDate;
-    private Category category;
 
-    public TodoItem(String description, LocalDateTime createDate, Category category) {
+    public TodoItem(String description, LocalDateTime createDate) {
         this.description = description;
         this.createDate = createDate;
-        this.category = category;
     }
 
     public TodoItem() {
@@ -34,16 +32,8 @@ public class TodoItem {
         this.createDate = createDate;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     @Override
     public String toString() {
-        return "TodoItem [description=" + description + ", createDate=" + createDate + ", category=" + category + "]";
+        return "TodoItem [description=" + description + ", createDate=" + createDate + "]";
     }
 }

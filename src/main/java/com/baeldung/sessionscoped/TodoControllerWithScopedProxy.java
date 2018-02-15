@@ -1,7 +1,6 @@
 package com.baeldung.sessionscoped;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TodoControllerWithScopedProxy extends AbstractTodoController {
 
     private TodoList todos;
-    private List<Category> allCategories;
 
-    public TodoControllerWithScopedProxy(List<Category> allCategories, TodoList todos) {
+    public TodoControllerWithScopedProxy(TodoList todos) {
         this.todos = todos;
-        this.allCategories = allCategories;
         this.setFormUrl("/scopedproxy/form");
         this.setListView("redirect:/scopedproxy/todos.html");
         this.setTitle("Scoped Proxy Example");
@@ -32,7 +29,7 @@ public class TodoControllerWithScopedProxy extends AbstractTodoController {
         } else {
             model.addAttribute("todo", new TodoItem());
         }
-        model.addAttribute("allCategories", allCategories);
+
         model.addAttribute("formUrl", getFormUrl());
         model.addAttribute("title", getTitle());
         return "form";
