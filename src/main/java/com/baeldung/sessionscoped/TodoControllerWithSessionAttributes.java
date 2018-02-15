@@ -15,13 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 @RequestMapping("/sessionattributes")
 @SessionAttributes({"todos"})
-public class TodoControllerWithSessionAttributes extends AbstractTodoController {
-
-    public TodoControllerWithSessionAttributes() {
-        this.setFormUrl("/sessionattributes/form");
-        this.setListView("/sessionattributes/todos.html");
-        this.setTitle("Session Attributes Example");
-    }
+public class TodoControllerWithSessionAttributes {
 
     @GetMapping("/form")
     public String showForm(
@@ -32,9 +26,7 @@ public class TodoControllerWithSessionAttributes extends AbstractTodoController 
         } else {
             model.addAttribute("todo", new TodoItem());
         }
-        model.addAttribute("formUrl", getFormUrl());
-        model.addAttribute("title", getTitle());
-        return "form";
+        return "sessionattributesform";
     }
 
     @PostMapping("/form")
@@ -45,7 +37,7 @@ public class TodoControllerWithSessionAttributes extends AbstractTodoController 
         todo.setCreateDate(LocalDateTime.now());
         todos.add(todo);
         attributes.addFlashAttribute("todos", todos);
-        return new RedirectView(getListView());
+        return new RedirectView("/sessionattributes/todos.html");
     }
 
     @GetMapping("/todos.html")
@@ -53,9 +45,7 @@ public class TodoControllerWithSessionAttributes extends AbstractTodoController 
             Model model, 
             @ModelAttribute("todos") TodoList todos) {
         model.addAttribute("todos", todos);
-        model.addAttribute("formUrl", getFormUrl());
-        model.addAttribute("title", getTitle());
-        return "todos";
+        return "sessionattributestodos";
     }
 
     @ModelAttribute("todos")

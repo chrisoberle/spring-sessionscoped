@@ -14,16 +14,20 @@
     <body>
     	<div class="container">
     		<p>
-    			<h3 th:text="${title}">Title</h3>
+    			<h3>Scoped Proxy Example</h3>
     		</p>
     	</div>
         <div class="container">
         	<br/>
         	<div class="row">
-        		<div class="col card" style="min-width: 45em;padding: 1em;">
+        				<a th:href="@{/scopedproxy/form}" class="btn btn-sm btn-primary btn-block" role="button" 
+										style="width: 10em;">Add New</a>
+        	</div>
+        	<br/>
+        	<div class="row">
+        		<div class="col card" style="padding: 1em;">
        				<div class="card-block">
        					<h5 class="card-title">TODO List</h5>
-       			
 						<table>
 							<tbody>
 								<tr>
@@ -37,10 +41,6 @@
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<div class="col">
-					<a th:href="@{${formUrl}}" class="btn btn-sm btn-primary btn-block float-right" role="button" 
-										style="width: 10em;">Add New</a>
 				</div>
 			</div>
         </div>

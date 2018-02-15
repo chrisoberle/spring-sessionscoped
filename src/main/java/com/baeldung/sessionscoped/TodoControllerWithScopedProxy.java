@@ -11,15 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/scopedproxy")
-public class TodoControllerWithScopedProxy extends AbstractTodoController {
+public class TodoControllerWithScopedProxy {
 
     private TodoList todos;
 
     public TodoControllerWithScopedProxy(TodoList todos) {
         this.todos = todos;
-        this.setFormUrl("/scopedproxy/form");
-        this.setListView("redirect:/scopedproxy/todos.html");
-        this.setTitle("Scoped Proxy Example");
     }
 
     @GetMapping("/form")
@@ -30,23 +27,19 @@ public class TodoControllerWithScopedProxy extends AbstractTodoController {
             model.addAttribute("todo", new TodoItem());
         }
 
-        model.addAttribute("formUrl", getFormUrl());
-        model.addAttribute("title", getTitle());
-        return "form";
+        return "scopedproxyform";
     }
 
     @PostMapping("/form")
     public String create(@ModelAttribute TodoItem todo) {
         todo.setCreateDate(LocalDateTime.now());
         todos.add(todo);
-        return getListView();
+        return "redirect:/scopedproxy/todos.html";
     }
 
     @GetMapping("/todos.html")
     public String list(Model model) {
         model.addAttribute("todos", todos);
-        model.addAttribute("formUrl", getFormUrl());
-        model.addAttribute("title", getTitle());
-        return "todos";
+        return "scopedproxytodos";
     }
 }
