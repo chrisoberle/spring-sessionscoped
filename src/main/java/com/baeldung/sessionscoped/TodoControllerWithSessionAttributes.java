@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/sessionattributes")
-@SessionAttributes({"todos"})
+@SessionAttributes("todos")
 public class TodoControllerWithSessionAttributes {
 
     @GetMapping("/form")
