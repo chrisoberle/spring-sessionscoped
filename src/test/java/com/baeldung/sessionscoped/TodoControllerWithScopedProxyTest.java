@@ -51,7 +51,7 @@ public class TodoControllerWithScopedProxyTest {
     }
 
     @Test
-    public void whenTodoExists_thenSubsequentFormRequestContainsesMostRecentTodo() throws Exception {
+    public void whenSubmit_thenSubsequentFormRequestContainsMostRecentTodo() throws Exception {
         mockMvc.perform(post("/scopedproxy/form")
             .param("description", "newtodo"))
             .andExpect(status().is3xxRedirection())
